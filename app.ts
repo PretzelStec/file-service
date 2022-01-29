@@ -1,8 +1,7 @@
 import { connect, mongo, connection, connections, Types } from "mongoose";
 import multer from "multer";
 import path from "path";
-import { imageModel } from "./src/models/user.model";
-import { getUserDetailsRouteHandler } from "./src/routes/get-user-details.route";
+import { imageModel } from "./src/models/image.model";
 import { authenticateUser } from "./src/services/authenticate-user.service";
 
 const { GridFsStorage } = require('multer-gridfs-storage');
@@ -109,8 +108,6 @@ app.get("/getMyUploads", authenticateUser, async (req, res) => {
         return res.status(500).send({error: err.message});
     }
 });
-
-app.get("/myuserdetails", authenticateUser, getUserDetailsRouteHandler);
 
 const port = process.env.PORT;
 app.listen(port, () => {
